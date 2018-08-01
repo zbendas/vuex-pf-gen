@@ -1,11 +1,11 @@
 const state = {
     ability_scores: {
-        strength: 8,
-        dexterity: 14,
+        strength: 10,
+        dexterity: 12,
         constitution: 14,
         intelligence: 14,
         wisdom: 10,
-        charisma: 18
+        charisma: 16
     },
     temporary_adjustments: {
         strength: 0,
@@ -18,32 +18,44 @@ const state = {
     character_name: "Lem",
     player_name: "You",
     alignment: "LG",
-    character_level: 1,
+    classes: [
+        {
+            class_name: 'Bard',
+            level: 1
+        },
+    ],
     race: "Halfling",
     size: "Small",
     deity: "",
     homeland: "",
     gender: "Male",
     age: 25,
-    height: "",
+    height: "3 ft.",
     weight: "",
     hair: "",
     eyes: ""
 };
 
 const getters = {
-    getAbilityScore: state => ability => {
-        return state.ability_scores[ability]
+    getAbilityScore: (state, getters, rootState) => ability => {
+        return state.ability_scores[ability] + rootState.races[state.race].ability_bonus[ability]
     },
-    getAbilityModifier: state => ability => {
-        return Math.floor(state.ability_scores[ability] / 2 - 5)
+    getAbilityModifier: (state, getters, rootState) => ability => {
+        return Math.floor((state.ability_scores[ability] + rootState.races[state.race].ability_bonus[ability]) / 2 - 5)
+    },
+    getClassesLevels: state => {
+        let classes_string = [];
+        for (let i = 0; i < state.classes.length; i++) {
+            classes_string.push(`${state.classes[i].class_name} ${state.classes[i].level}`)
+        }
+        return classes_string.join(', ')
     },
     getTemporaryAdjustment: state => ability => {
         return state.temporary_adjustments[ability]
     },
-    getTemporaryModifier: state => ability => {
-        return Math.floor((state.ability_scores[ability] + state.temporary_adjustments[ability]) / 2 - 5)
-    }
+    getTemporaryModifier: (state, getters, rootState) => ability => {
+        return Math.floor((state.ability_scores[ability] + rootState.races[state.race].ability_bonus[ability] + state.temporary_adjustments[ability]) / 2 - 5)
+    },
 };
 
 const mutations = {

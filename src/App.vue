@@ -27,26 +27,37 @@
         -webkit-font-smoothing: antialiased
         -moz-osx-font-smoothing: grayscale
         text-align: center
-        color: #eee
         height: 100vh
         width: 100vw
 
     .strength
         background: $strength
+        &.light-background
+            background: transparentize($strength, 0.8)
 
     .dexterity
         background: $dexterity
+        &.light-background
+            background: transparentize($dexterity, 0.8)
 
     .constitution
         background: $constitution
+        &.light-background
+            background: transparentize($constitution, 0.8)
 
     .intelligence
         background: $intelligence
+        &.light-background
+            background: transparentize($intelligence, 0.8)
 
     .wisdom
         background: $wisdom
+        &.light-background
+            background: transparentize($wisdom, 0.8)
 
     .charisma
         background: $charisma
+        &.light-background
+            background: transparentize($charisma, 0.8)
 
 </style>

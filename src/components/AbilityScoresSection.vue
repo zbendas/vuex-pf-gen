@@ -1,5 +1,5 @@
 <template>
-    <div class="ability-score-container">
+    <div class="ability-score-section">
         <div class="column-label"></div>
         <div class="column-label">Ability Score</div>
         <div class="column-label">Ability Modifier</div>
@@ -31,5 +31,5 @@
         padding: 2px 0
         text-align: center
         color: black
-        font: normal 0.75em serif
+        font: normal 0.65em 'Noto Sans', sans-serif
 </style>

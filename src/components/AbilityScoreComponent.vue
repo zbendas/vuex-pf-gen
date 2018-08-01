@@ -1,11 +1,11 @@
 <template>
     <section>
-        <div class="ability-name" :class=ability>{{ ability.substring(0, 3).toUpperCase() }}</div>
-        <div type="number" class="ability-score" :class=ability>{{ getAbilityScore(ability) }}</div>
-        <div class="ability-modifier" :class=ability>{{ getAbilityModifier(ability) }}</div>
+        <div class="ability-name" :class="ability">{{ ability.substring(0, 3).toUpperCase() }}</div>
+        <div class="ability-score light-background" :class=ability>{{ getAbilityScore(ability) }}</div>
+        <div class="ability-modifier light-background" :class="ability">{{ getAbilityModifier(ability) }}</div>
         <input type="number" class="temporary-adjustment" :value="getTemporaryAdjustment(ability)"
                @input="updateTemporaryAdjustment(ability, $event)"/>
-        <div class="temporary-modifier" :class=ability>{{ getTemporaryModifier(ability) }}</div>
+        <div class="temporary-modifier light-background" :class="ability">{{ getTemporaryModifier(ability) }}</div>
     </section>
 </template>
 
@@ -34,6 +34,8 @@
 </script>
 
 <style scoped lang="sass">
+    @import '../styles/colors'
+
     section
         display: flex
         flex-flow: row nowrap
@@ -42,11 +44,12 @@
 
         input
             border: none
-            color: white
+            color: black
             text-align: center
 
         .ability-name
             display: inline-block
+            color: $anti-flash_white
             font: 700 1em 'Noto Serif', serif
             height: 21px
             width: 50px
@@ -56,17 +59,18 @@
         .ability-score, .temporary-adjustment
             display: inline-block
             font: normal 1em serif
+            color: black
+            line-height: 21px
             border-bottom: black 2px solid
             height: 21px
             width: 50px
             margin: 2.5px 10px
 
-        .temporary-adjustment
-            color: black
-
         .ability-modifier, .temporary-modifier
             display: inline-block
             font: normal 1em serif
+            color: black
+            line-height: 21px
             border-bottom: black 2px solid
             height: 23px
             width: 50px

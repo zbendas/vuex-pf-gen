@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <Page/>
+    </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+    import Page from './components/Page';
 
-export default {
-  name: "app",
-  components: {
-    HelloWorld
-  }
-};
+    export default {
+        name: "app",
+        components: {Page}
+    };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+    @import 'styles/colors'
+    @import 'styles/fonts'
+
+    body
+        padding: 0
+        margin: 0
+        background: $dark
+
+    #app
+        font-family: "Avenir", Helvetica, Arial, sans-serif
+        -webkit-font-smoothing: antialiased
+        -moz-osx-font-smoothing: grayscale
+        text-align: center
+        color: #eee
+        height: 100vh
+        width: 100vw
+
+    .strength
+        background: $strength
+
+    .dexterity
+        background: $dexterity
+
+    .constitution
+        background: $constitution
+
+    .intelligence
+        background: $intelligence
+
+    .wisdom
+        background: $wisdom
+
+    .charisma
+        background: $charisma
+
 </style>

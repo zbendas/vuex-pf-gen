@@ -7,7 +7,7 @@
             <AbilityScoresSection/>
         </section>
         <section id="saving-throws">
-
+            <SavingThrowsSection/>
         </section>
         <section id="combat-stats">
 
@@ -18,10 +18,11 @@
 <script>
     import AbilityScoresSection from "./AbilityScoresSection";
     import CharacterInfoSection from "./CharacterInfoSection";
+    import SavingThrowsSection from "./SavingThrowsSection";
 
     export default {
         name: "Page",
-        components: {CharacterInfoSection, AbilityScoresSection}
+        components: {SavingThrowsSection, CharacterInfoSection, AbilityScoresSection}
     }
 </script>
 

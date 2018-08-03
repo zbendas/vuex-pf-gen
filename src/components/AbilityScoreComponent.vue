@@ -24,7 +24,7 @@
         },
         methods: {
             updateTemporaryAdjustment(ability, e) {
-                this.$store.commit('setTemporaryAdjustment', {value: e.target.value, ability: ability})
+                this.$store.commit('updateTemporaryAdjustment', {value: e.target.value, ability: ability})
             }
         },
         props: {

@@ -59,7 +59,7 @@ const getters = {
 };
 
 const mutations = {
-    setTemporaryAdjustment(state, payload) {
+    updateTemporaryAdjustment(state, payload) {
         state.temporary_adjustments[payload.ability] = parseInt(payload.value);
     },
 };

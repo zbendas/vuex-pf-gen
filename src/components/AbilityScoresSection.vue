@@ -1,6 +1,5 @@
 <template>
     <div class="ability-score-section">
-        <div class="column-label"></div>
         <div class="column-label">Ability Score</div>
         <div class="column-label">Ability Modifier</div>
         <div class="column-label">Temporary Adjustment</div>
@@ -24,12 +23,11 @@
 </script>
 
 <style lang="sass" scoped>
+    @import '../styles/shared'
+
+    .ability-score-section > .column-label:first-child
+        margin-left: 80px
     .column-label
-        display: inline-block
-        width: 50px
-        margin: 2.5px 10px
-        padding: 2px 0
-        text-align: center
-        color: black
-        font: normal 0.65em 'Noto Sans', sans-serif
+        @extend %column-label
+
 </style>

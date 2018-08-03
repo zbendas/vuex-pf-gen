@@ -34,30 +34,42 @@
         background: $strength
         &.light-background
             background: transparentize($strength, 0.8)
+            &:hover
+                background: transparentize($strength, 0.5)
 
     .dexterity
         background: $dexterity
         &.light-background
             background: transparentize($dexterity, 0.8)
+            &:hover
+                background: transparentize($dexterity, 0.5)
 
     .constitution
         background: $constitution
         &.light-background
             background: transparentize($constitution, 0.8)
+            &:hover
+                background: transparentize($constitution, 0.5)
 
     .intelligence
         background: $intelligence
         &.light-background
             background: transparentize($intelligence, 0.8)
+            &:hover
+                background: transparentize($intelligence, 0.5)
 
     .wisdom
         background: $wisdom
         &.light-background
             background: transparentize($wisdom, 0.8)
+            &:hover
+                background: transparentize($wisdom, 0.5)
 
     .charisma
         background: $charisma
         &.light-background
             background: transparentize($charisma, 0.8)
+            &:hover
+                background: transparentize($charisma, 0.5)
 
 </style>

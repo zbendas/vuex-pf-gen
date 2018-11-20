@@ -3,9 +3,9 @@
         <div class="ability-name" :class="ability">{{ ability.substring(0, 3).toUpperCase() }}</div>
         <div class="ability-score light-background" :class=ability>{{ getAbilityScore(ability) }}</div>
         <div class="ability-modifier light-background" :class="ability">{{ getAbilityModifier(ability) }}</div>
-        <input type="number" class="temporary-adjustment" :value="getTemporaryAdjustment(ability)"
-               @input="updateTemporaryAdjustment(ability, $event)"/>
-        <div class="temporary-modifier light-background" :class="ability">{{ getTemporaryModifier(ability) }}</div>
+        <input type="number" class="temporary-ability-adjustment" :value="getTemporaryAbilityAdjustment(ability)"
+               @input="updateTemporaryAbilityAdjustment(ability, $event)"/>
+        <div class="temporary-ability-modifier light-background" :class="ability">{{ getTemporaryAbilityModifier(ability) }}</div>
     </section>
 </template>
 
@@ -18,13 +18,13 @@
             ...mapGetters([
                 'getAbilityScore',
                 'getAbilityModifier',
-                'getTemporaryAdjustment',
-                'getTemporaryModifier',
+                'getTemporaryAbilityAdjustment',
+                'getTemporaryAbilityModifier',
             ])
         },
         methods: {
-            updateTemporaryAdjustment(ability, e) {
-                this.$store.commit('updateTemporaryAdjustment', {value: e.target.value, ability: ability})
+            updateTemporaryAbilityAdjustment(ability, e) {
+                this.$store.commit('updateTemporaryAbilityAdjustment', {value: e.target.value, ability: ability})
             }
         },
         props: {
@@ -56,7 +56,7 @@
             margin: 2.5px 10px
             padding: 2px 0
 
-        .ability-score, .temporary-adjustment
+        .ability-score, .temporary-ability-adjustment
             display: inline-block
             font: normal 1em serif
             color: black
@@ -66,7 +66,7 @@
             width: 50px
             margin: 2.5px 10px
 
-        .ability-modifier, .temporary-modifier
+        .ability-modifier, .temporary-ability-modifier
             display: inline-block
             font: normal 1em serif
             color: black

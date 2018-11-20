@@ -10,7 +10,7 @@
             <SavingThrowsSection/>
         </section>
         <section id="combat-stats">
-
+            <CombatStatsSection/>
         </section>
     </section>
 </template>
@@ -19,10 +19,11 @@
     import AbilityScoresSection from "./AbilityScoresSection";
     import CharacterInfoSection from "./CharacterInfoSection";
     import SavingThrowsSection from "./SavingThrowsSection";
+    import CombatStatsSection from "./CombatStatsSection";
 
     export default {
         name: "Page",
-        components: {SavingThrowsSection, CharacterInfoSection, AbilityScoresSection}
+        components: {CombatStatsSection, SavingThrowsSection, CharacterInfoSection, AbilityScoresSection}
     }
 </script>
 

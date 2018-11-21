@@ -8,9 +8,9 @@
             <div class="column-label">Misc Modifier</div>
             <div class="column-label">Temporary Modifier</div>
         </section>
-        <SavingThrowComponent save="fortitude" save_type="poor_save"/>
-        <SavingThrowComponent save="reflex" save_type="good_save"/>
-        <SavingThrowComponent save="will" save_type="good_save"/>
+        <SavingThrowComponent save="fortitude"/>
+        <SavingThrowComponent save="reflex"/>
+        <SavingThrowComponent save="will"/>
     </div>
 </template>
 

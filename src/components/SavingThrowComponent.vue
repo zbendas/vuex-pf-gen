@@ -71,7 +71,6 @@
         },
         props: {
             save: String,
-            save_type: String
         }
     }
 </script>

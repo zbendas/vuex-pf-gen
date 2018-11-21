@@ -21,20 +21,12 @@ const state = {
     saves: {
         good_save: [2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12],
         poor_save: [0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6],
-        temporary_modifiers: {
-            fortitude: 0,
-            reflex: 0,
-            will: 0
-        }
     }
 };
 
 const getters = {
     getBaseSave: state => (save_type, level) => {
         return state.saves[save_type][parseInt(level - 1)];
-    },
-    getTemporarySaveModifier: state => save => {
-        return state.saves.temporary_modifiers[save];
     },
     getBABString: state => (bab_progression, level) => {
         return state.bab[bab_progression][parseInt(level - 1)].join('/');
@@ -46,9 +38,7 @@ const getters = {
 };
 
 const mutations = {
-    updateTemporarySaveModifier(state, payload) {
-        state.saves.temporary_modifiers[payload.save] = parseInt(payload.value);
-    },
+
 };
 
 export default {

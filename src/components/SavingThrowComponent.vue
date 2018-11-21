@@ -2,12 +2,12 @@
     <section>
         <div class="saving-throw-name" :class="ability">{{save.toUpperCase()}}</div>
         <div class="saving-throw-total light-background" :class="ability">{{ save_total }}</div>
-        <div class="saving-throw-addend base-save">{{ getBaseSave(save_type, 1)}}</div>
+        <div class="saving-throw-addend base-save">{{ save_base }}</div>
         <div class="saving-throw-addend ability-modifier light-background" :class="ability">{{
-            getAbilityModifier(ability) }}
+            getTemporaryAbilityModifier(ability) }}
         </div>
-        <div class="saving-throw-addend magic-modifier">{{ magic_modifier }}</div>
-        <div class="saving-throw-addend misc-modifier">{{ misc_modifier }}</div>
+        <div class="saving-throw-addend magic-modifier">{{ saving_throws[save].magic_modifier }}</div>
+        <div class="saving-throw-addend misc-modifier">{{ saving_throws[save].misc_modifier }}</div>
         <input type="number" class="saving-throw-addend temporary-modifier"
                @input="updateTemporarySaveModifier(save, $event)" :value="getTemporarySaveModifier(save)"/>
     </section>
@@ -20,30 +20,48 @@
         name: "SavingThrowComponent",
         computed: {
             ability: function () {
-                if (this.save === "fortitude") {
-                    return "constitution";
-                }
-                if (this.save === "reflex") {
-                    return "dexterity";
-                }
-                if (this.save === "will") {
-                    return "wisdom";
+                switch (this.save) {
+                    case "fortitude":
+                        return "constitution";
+                    case "reflex":
+                        return "dexterity";
+                    case "will":
+                        return "wisdom";
                 }
             },
-            magic_modifier: function () {
-                return 0;
-            },
-            misc_modifier: function () {
-                return 0;
+            save_base: function () {
+                switch (this.save) {
+                    case "fortitude":
+                        return this.getFortitudeBaseSave;
+                    case "reflex":
+                        return this.getReflexBaseSave;
+                    case "will":
+                        return this.getWillBaseSave;
+                }
             },
             save_total: function () {
-                return (this.getBaseSave(this.save_type, 1) + this.getAbilityModifier(this.ability) + this.magic_modifier + this.misc_modifier + this.getTemporarySaveModifier(this.save))
+                switch (this.save) {
+                    case "fortitude":
+                        return this.getFortitudeSave;
+                    case "reflex":
+                        return this.getReflexSave;
+                    case "will":
+                        return this.getWillSave;
+                }
             },
-            ...mapState([]),
+            ...mapState({
+                saving_throws: state => state.character.saves,
+            }),
             ...mapGetters([
                 'getBaseSave',
-                'getAbilityModifier',
+                'getTemporaryAbilityModifier',
                 'getTemporarySaveModifier',
+                'getFortitudeBaseSave',
+                'getReflexBaseSave',
+                'getWillBaseSave',
+                'getFortitudeSave',
+                'getReflexSave',
+                'getWillSave',
             ])
         },
         methods: {
@@ -80,12 +98,13 @@
         .saving-throw-total
             @extend %underline_field
 
+
         .saving-throw-addend
             @extend %underline_field
+            margin: 2.5px 5px
 
-        input
+        input.saving-throw-addend
             @extend %underline_input
-            .saving-throw-addend
-                @extend %underline_field
+            @extend %underline_field
 
 </style>

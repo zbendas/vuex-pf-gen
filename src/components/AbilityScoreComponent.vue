@@ -35,6 +35,7 @@
 
 <style scoped lang="sass">
     @import '../styles/colors'
+    @import '../styles/shared'
 
     section
         display: flex
@@ -56,23 +57,14 @@
             margin: 2.5px 10px
             padding: 2px 0
 
-        .ability-score, .temporary-ability-adjustment
-            display: inline-block
-            font: normal 1em serif
-            color: black
-            line-height: 21px
-            border-bottom: black 2px solid
-            height: 21px
-            width: 50px
-            margin: 2.5px 10px
+        .ability-score
+            @extend %underline_field
+
+        .temporary-ability-adjustment
+            @extend %underline_input
+            @extend %underline_field
 
         .ability-modifier, .temporary-ability-modifier
-            display: inline-block
-            font: normal 1em serif
-            color: black
-            line-height: 21px
-            border-bottom: black 2px solid
-            height: 23px
-            width: 50px
-            margin: 2.5px 10px
+            @extend %underline_field
+
 </style>

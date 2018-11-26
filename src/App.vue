@@ -72,4 +72,11 @@
             &:hover
                 background: transparentize($charisma, 0.5)
 
+    .no-ability
+        background: $no-ability
+        &.light-background
+            background: transparentize($no-ability, 0.8)
+            &:hover
+                background: transparentize($no-ability, 0.5)
+
 </style>

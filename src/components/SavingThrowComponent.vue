@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="saving-throw">
         <div class="saving-throw-name" :class="ability">{{save.toUpperCase()}}</div>
         <div class="saving-throw-total light-background" :class="ability">{{ save_total }}</div>
         <div class="saving-throw-addend base-save">{{ save_base }}</div>
@@ -83,7 +83,7 @@
         display: flex
         flex-flow: row nowrap
         justify-content: center
-        align-items: flex-end
+        align-items: center
 
         .saving-throw-name
             display: inline-block
@@ -96,6 +96,7 @@
 
         .saving-throw-total
             @extend %underline_field
+            margin: 2.5px 5px
 
 
         .saving-throw-addend

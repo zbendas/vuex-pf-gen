@@ -1,7 +1,6 @@
 <template>
     <section class="saving-throws">
         <section class="saving-throw-labels">
-            <div class="spacer"></div>
             <div class="column-label">Total</div>
             <div class="column-label">Base Save</div>
             <div class="column-label">Ability Modifier</div>
@@ -31,16 +30,11 @@
         flex-flow: row nowrap
         justify-content: center
         align-items: center
+        & > .column-label:first-child
+            margin-left: 145px
 
     .column-label
         @extend %column-label
-        flex-basis: 50px
-        min-width: 50px
         margin: 2.5px 5px
-
-    .spacer
-        min-width: 110px
-        margin: 10px
-        flex-basis: 110px
 
 </style>

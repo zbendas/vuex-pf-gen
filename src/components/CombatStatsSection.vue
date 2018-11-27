@@ -1,9 +1,10 @@
 <template>
     <div class="combat-stats-section">
+        <SpeedComponent />
+        <InitiativeComponent />
+        <CombatManeuverBonusComponent />
         <ArmorClassComponent />
         <OtherCombatComponent />
-        <CombatManeuverBonusComponent />
-        <CombatManeuverDefenseComponent />
     </div>
 </template>
 
@@ -11,11 +12,14 @@
     import ArmorClassComponent from "./ArmorClassComponent";
     import OtherCombatComponent from "./OtherCombatComponent";
     import CombatManeuverBonusComponent from "./CombatManeuverBonusComponent";
-    import CombatManeuverDefenseComponent from "./CombatManeuverDefenseComponent";
+    import InitiativeComponent from "./InitiativeComponent";
+    import SpeedComponent from "./SpeedComponent";
 
     export default {
         name: "CombatStatsSection",
-        components: {ArmorClassComponent, OtherCombatComponent, CombatManeuverBonusComponent, CombatManeuverDefenseComponent}
+        components: {
+            SpeedComponent,
+            InitiativeComponent, ArmorClassComponent, OtherCombatComponent, CombatManeuverBonusComponent,}
     }
 </script>
 

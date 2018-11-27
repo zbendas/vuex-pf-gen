@@ -1,5 +1,5 @@
 const state = {
-    Halfling: {
+    halfling: {
         ability_bonus: {
             strength: -2,
             dexterity: 2,

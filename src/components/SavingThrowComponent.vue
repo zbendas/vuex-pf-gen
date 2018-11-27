@@ -106,5 +106,6 @@
         input.saving-throw-addend
             @extend %underline_input
             @extend %underline_field
+            margin: 2.5px 5px
 
 </style>

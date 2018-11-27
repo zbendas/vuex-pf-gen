@@ -37,7 +37,7 @@
         height: 95%
         width: 100%
         display: grid
-        grid-template: "ability-scores none character-info" "saving-throws none combat-stats"/ 47.5% 5% 47.5%
+        grid-template: "ability-scores character-info" "ability-scores combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats"/ 50% 50%
 
     #ability-scores
         grid-area: ability-scores

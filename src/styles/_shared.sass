@@ -7,6 +7,7 @@
   height: 21px
   margin: 2.5px 0
   padding: 2px 0
+  text-transform: uppercase
 
 %underline_field
   display: inline-block
@@ -33,3 +34,15 @@
   text-align: center
   color: black
   font: normal 0.65em 'Noto Sans', sans-serif
+
+=two-color($first, $second)
+  background: linear-gradient(135deg, $first 0%, $first 50%, $second 50%, $second 100%)
+
+=light-two-color($first, $second)
+  $light-first: transparentize($first, 0.8)
+  $light-second: transparentize($second, 0.8)
+  $hover-first: transparentize($first, 0.5)
+  $hover-second: transparentize($second, 0.5)
+  +two-color($light-first, $light-second)
+  &:hover
+      +two-color($hover-first, $hover-second)

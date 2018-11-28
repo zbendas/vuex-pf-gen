@@ -1,15 +1,16 @@
 <template>
     <div id="app">
-        <Page/>
+        <TabNav :tabs="[{name: 'Character Stats', active: true, view: 'stats'}, {name: 'Skills', active: false, view: 'skills'}, {name: 'Inventory', active: false, view: 'inventory'}]"/>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Page from './components/Page';
+    import TabNav from "./components/TabNav";
 
     export default {
         name: "app",
-        components: {Page}
+        components: {TabNav},
     };
 </script>
 
@@ -27,7 +28,7 @@
         -webkit-font-smoothing: antialiased
         -moz-osx-font-smoothing: grayscale
         text-align: center
-        height: 100vh
+        height: 95vh
         width: 100vw
 
     .strength

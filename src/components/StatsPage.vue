@@ -22,7 +22,7 @@
     import CombatStatsSection from "./CombatStatsSection";
 
     export default {
-        name: "Page",
+        name: "StatsPage",
         components: {CombatStatsSection, SavingThrowsSection, CharacterInfoSection, AbilityScoresSection}
     }
 </script>
@@ -32,9 +32,7 @@
 
     #page-content
         background: $light
-        position: relative
-        top: 5%
-        height: 95%
+        height: 100%
         width: 100%
         display: grid
         grid-template: "ability-scores character-info" "ability-scores combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats" "saving-throws combat-stats"/ 50% 50%

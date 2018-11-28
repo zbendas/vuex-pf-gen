@@ -33,7 +33,7 @@
         </section>
         <section class="bab">
             <div class="bab-label no-ability">Base Attack</div>
-            <div class="addend light-background no-ability">{{ getAllClassesBABArray }}</div>
+            <div class="addend long light-background no-ability">{{ getConsolidatedBABArray.join(' / ') }}</div>
         </section>
     </section>
 </template>
@@ -55,7 +55,7 @@
                 'getTemporaryAbilityModifier',
                 'getSizeModifier',
                 'getCombatManeuverDefense',
-                'getAllClassesBABArray',
+                'getConsolidatedBABArray',
             ]),
         },
         methods: {
@@ -109,8 +109,11 @@
         @extend %stat-label
         flex-basis: 130px
 
-    .addend.empty
-        border: none
+    .addend
+        &.empty
+            border: none
+        &.long
+            min-width: 100px
 
     input.addend
         @extend %underline_input

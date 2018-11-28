@@ -154,10 +154,24 @@ const getters = {
     getBAB: (state, getters, rootState, rootGetters) => {
         return state.classes.map(curr_class => Math.max(...rootGetters.getBABArray(rootState.reference.class_info[curr_class.class_name.toLowerCase()].bab, curr_class.level))).reduce((total, current) => total += current)
     },
-    getAllClassesBABArray: (state, getters, rootState, rootGetters) => {
+    getConsolidatedBABArray: (state, getters, rootState, rootGetters) => {
         let all_bab_arrays = state.classes.map(curr_class => rootGetters.getBABArray(rootState.reference.class_info[curr_class.class_name.toLowerCase()].bab, curr_class.level)).sort((a, b) => {return a.length - b.length});
-        console.log(all_bab_arrays);
-        // TODO This one is... tricky.
+        let max_length = all_bab_arrays[all_bab_arrays.length - 1 ].length;
+        // Equalize the length of each BAB array
+        for (let array of all_bab_arrays){
+            while(array.length < max_length){
+                array.push(0);
+            }
+        }
+        // Initialize array at necessary length, then fill it with zeroes
+        let consolidated_bab_array = new Array(max_length);
+        consolidated_bab_array.fill(0);
+        for (let i = 0; i < max_length; i++){
+            for (let j = 0; j < all_bab_arrays.length; j++){
+                consolidated_bab_array[i] += all_bab_arrays[j][i];
+            }
+        }
+        return consolidated_bab_array;
     },
     getCombatManeuverBonus: (state, getters) => {
         return getters.getTemporaryAbilityModifier("strength") - getters.getSizeModifier + getters.getBAB + state.combat_stats.cmb_misc_mod;

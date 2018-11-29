@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <TabNav :tabs="[{name: 'Character Stats', active: true, view: 'stats'}, {name: 'Skills', active: false, view: 'skills'}, {name: 'Inventory', active: false, view: 'inventory'}]"/>
+        <TabNav :initial_tabs="[{name: 'Character Stats', active: true, view: 'stats'}, {name: 'Skills', active: false, view: 'skills'}, {name: 'Inventory', active: false, view: 'inventory'}]"/>
         <router-view></router-view>
     </div>
 </template>

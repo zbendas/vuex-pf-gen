@@ -12,9 +12,7 @@
         },
         methods: {
             goToTab: function() {
-                console.log(`Clicked ${this.tab_name}`);
-                // TODO This doesn't quite work.
-                this.$router.push({ name: this.$props.view });
+                this.$router.replace({ name: this.$props.view }, () => { this.$emit('change-tab', this.tab_name)});
             }
         }
     }

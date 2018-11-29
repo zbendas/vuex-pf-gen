@@ -1,5 +1,5 @@
 <template>
-    <div>Inventory goes here</div>
+    <section id="page-content"></section>
 </template>
 
 <script>
@@ -8,6 +8,13 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
+    @import '../styles/colors'
+
+    #page-content
+        background: $light
+        height: 100%
+        width: 100%
+        display: grid
 
 </style>

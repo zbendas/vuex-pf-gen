@@ -45,6 +45,10 @@ const state = {
         cmb_misc_mod: 0,
         cmd_misc_mod: 0,
     },
+    skills: [
+        ["appraise", 2],
+        ["climb", 4],
+    ],
     inventory: {},
     character_name: "Lem",
     player_name: "You",
@@ -184,7 +188,7 @@ const getters = {
     },
     getArmoredSpeed: () => {
         // TODO Figure out how this will work.
-        console.log('Armor speed calculation not yet implemented.');
+        console.warn('Armor speed calculation not yet implemented.');
     },
     getSwimSpeed: (state, getters, rootState) => {
         return rootState.reference.races[state.race.toLowerCase()].hasOwnProperty('swim_speed') ? rootState.reference.races[state.race.toLowerCase()].swim_speed : 'N/A';

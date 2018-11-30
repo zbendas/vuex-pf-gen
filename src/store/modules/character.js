@@ -46,8 +46,28 @@ const state = {
         cmd_misc_mod: 0,
     },
     skills: [
-        ["appraise", 2],
-        ["climb", 4],
+        {skill_name: "Acrobatics", ranks: 8, misc_mod: 0},
+        {skill_name: "Appraise", ranks: 0, misc_mod: 0},
+        {skill_name: "Bluff", ranks: 8, misc_mod: 0},
+        {skill_name: "Climb", ranks: 1, misc_mod: 0},
+        {skill_name: "Diplomacy", ranks: 8, misc_mod: 0},
+        {skill_name: "Disable Device", ranks: 0, misc_mod: 0},
+        {skill_name: "Disguise Self", ranks: 0, misc_mod: 0},
+        {skill_name: "Escape Artist", ranks: 0, misc_mod: 0},
+        {skill_name: "Fly", ranks: 0, misc_mod: 0},
+        {skill_name: "Handle Animal", ranks: 0, misc_mod: 0},
+        {skill_name: "Heal", ranks: 0, misc_mod: 0},
+        {skill_name: "Intimidate", ranks: 0, misc_mod: 0},
+        {skill_name: "Linguistics", ranks: 0, misc_mod: 0},
+        {skill_name: "Perception", ranks: 2, misc_mod: 0},
+        {skill_name: "Ride", ranks: 0, misc_mod: 0},
+        {skill_name: "Sense Motive", ranks: 4, misc_mod: 0},
+        {skill_name: "Sleight of Hand", ranks: 0, misc_mod: 0},
+        {skill_name: "Spellcraft", ranks: 0, misc_mod: 0},
+        {skill_name: "Stealth", ranks: 10, misc_mod: 0},
+        {skill_name: "Survival", ranks: 0, misc_mod: 0},
+        {skill_name: "Swim", ranks: 0, misc_mod: 0},
+        {skill_name: "Use Magic Device", ranks: 0, misc_mod: 0},
     ],
     inventory: {},
     character_name: "Lem",
@@ -204,7 +224,17 @@ const getters = {
     },
     getFlyManeuverability: (state, getters, rootState) => {
         return rootState.reference.races[state.race.toLowerCase()].hasOwnProperty('fly_maneuverability') ? rootState.reference.races[state.race.toLowerCase()].fly_maneuverability : 'Average';
-    }
+    },
+    getClassSkills: (state, getters, rootState) => {
+        // Get array of all class names for this character
+        // Get all the class skills from the reference files, based on the class names
+        // Flatten out the array from 2- to 1-dimensional
+        // Filter to make the array contain only unique values
+        // Make lowercase
+        let test = state.classes.map(curr_class => curr_class.class_name).map(class_name => rootState.reference.class_info[class_name.toLowerCase()].class_skills).reduce((flatten, arr) => [...flatten, ...arr]).filter((value, index, self) => {return self.indexOf(value) === index}).map(mixed_case => mixed_case.toLowerCase());
+        console.log(test);
+        return test;
+    },
 };
 
 const mutations = {
@@ -222,7 +252,10 @@ const mutations = {
     },
     updateInitiativeMiscModifier(state, value) {
         state.combat_stats.initiative_misc_modifier = parseInt(value);
-    }
+    },
+    updateSkillMiscMod(state, payload){
+        state.skills.filter(element => {return element.skill_name === payload.skill_name})[0].misc_mod = payload.value;
+    },
 };
 
 export default {

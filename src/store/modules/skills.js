@@ -1,9 +1,8 @@
 class Skill {
     constructor(name, modifier, trained_only = false) {
-        this.name = name;
+        this.skill_name = name;
         this.modifier = modifier;
         this.trained_only = trained_only;
-        this.class_skill = false;
     }
 }
 
@@ -19,13 +18,13 @@ class MultiSkill extends Skill {
     }
 
     add_skill(subskill_name) {
-        this.group_skills.push(`${this.name} (${subskill_name})`);
+        this.group_skills.push(`${this.skill_name} (${subskill_name})`);
         return this;
     }
 
     add_skills(...args) {
-        for (let i = 0; i < args.length; i++) {
-            this.add_skill(args[i]);
+        for (let arg of args) {
+            this.add_skill(arg);
         }
         return this;
     }

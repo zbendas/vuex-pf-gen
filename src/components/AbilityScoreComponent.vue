@@ -4,13 +4,13 @@
         <div class="ability-score light-background" :class=ability>{{ getAbilityScore(ability) }}</div>
         <div class="ability-modifier light-background" :class="ability">{{ getAbilityModifier(ability) }}</div>
         <input type="number" class="temporary-ability-adjustment" :value="getTemporaryAbilityAdjustment(ability)"
-               @input="updateTemporaryAbilityAdjustment(ability, $event)"/>
+               @input="updateTemporaryAbilityAdjustment({ability: ability, value: $event.target.value})"/>
         <div class="temporary-ability-modifier light-background" :class="ability">{{ getTemporaryAbilityModifier(ability) }}</div>
     </section>
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: "AbilityScoreComponent",
@@ -23,9 +23,9 @@
             ])
         },
         methods: {
-            updateTemporaryAbilityAdjustment(ability, e) {
-                this.$store.commit('updateTemporaryAbilityAdjustment', {value: e.target.value, ability: ability})
-            }
+            ...mapMutations([
+                'updateTemporaryAbilityAdjustment'
+            ]),
         },
         props: {
             ability: String

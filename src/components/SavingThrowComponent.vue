@@ -9,12 +9,12 @@
         <div class="saving-throw-addend magic-modifier">{{ saving_throws[save].magic_modifier }}</div>
         <div class="saving-throw-addend misc-modifier">{{ saving_throws[save].misc_modifier }}</div>
         <input type="number" class="saving-throw-addend temporary-modifier"
-               @input="updateTemporarySaveModifier(save, $event)" :value="getTemporarySaveModifier(save)"/>
+               @input="updateTemporarySaveModifier({save: save, value: $event.target.value})" :value="getTemporarySaveModifier(save)"/>
     </section>
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
+    import {mapState, mapGetters, mapMutations} from 'vuex';
 
     export default {
         name: "SavingThrowComponent",
@@ -65,9 +65,9 @@
             ])
         },
         methods: {
-            updateTemporarySaveModifier(save, e) {
-                this.$store.commit('updateTemporarySaveModifier', {value: e.target.value, save: save})
-            }
+            ...mapMutations([
+                'updateTemporarySaveModifier',
+            ]),
         },
         props: {
             save: String,

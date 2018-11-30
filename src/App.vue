@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <TabNav :initial_tabs="[{name: 'Character Stats', active: true, view: 'stats'}, {name: 'Skills', active: false, view: 'skills'}, {name: 'Inventory', active: false, view: 'inventory'}]"/>
+        <TabNav :initial_tabs="tabs"/>
         <router-view></router-view>
     </div>
 </template>
@@ -11,6 +11,20 @@
     export default {
         name: "app",
         components: {TabNav},
+        data: function () {
+            return {
+                tabs: [
+                    {name: 'Character Stats', active: this.determineActive('stats'), view: 'stats'},
+                    {name: 'Skills', active: this.determineActive('skills'), view: 'skills'},
+                    {name: 'Inventory', active: this.determineActive('inventory'), view: 'inventory'}
+                ]
+            }
+        },
+        methods: {
+            determineActive: function (tab) {
+                return tab === this.$route.name
+            }
+        },
     };
 </script>
 

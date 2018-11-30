@@ -30,7 +30,7 @@
                 for (let tab of this.tabs){
                     tab.active = tab.name === tab_name;
                 }
-            }
+            },
         }
     }
 </script>

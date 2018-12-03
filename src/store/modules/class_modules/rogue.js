@@ -17,7 +17,7 @@ const state = {
         "Escape Artist",
         "Intimidate",
         "Knowledge (dungeoneering)",
-        "Knowledge (loacl)",
+        "Knowledge (local)",
         "Linguistics",
         "Perception",
         "Perform",

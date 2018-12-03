@@ -68,6 +68,11 @@ const state = {
         {skill_name: "Survival", ranks: 0, misc_mod: 0},
         {skill_name: "Swim", ranks: 0, misc_mod: 0},
         {skill_name: "Use Magic Device", ranks: 0, misc_mod: 0},
+        {skill_name: "Craft", specialization: "alchemy", ranks: 1, misc_mod: 0},
+        {skill_name: "Craft", specialization: "armor", ranks: 2, misc_mod: 0},
+        {skill_name: "Perform", specialization: "wind", ranks: 1, misc_mod: 0},
+        {skill_name: "Knowledge", specialization: "arcana", ranks: 1, misc_mod: 0},
+        {skill_name: "Knowledge", specialization: "nobility", ranks: 1, misc_mod: 0},
     ],
     inventory: {},
     character_name: "Lem",
@@ -179,19 +184,21 @@ const getters = {
         return state.classes.map(curr_class => Math.max(...rootGetters.getBABArray(rootState.reference.class_info[curr_class.class_name.toLowerCase()].bab, curr_class.level))).reduce((total, current) => total += current)
     },
     getConsolidatedBABArray: (state, getters, rootState, rootGetters) => {
-        let all_bab_arrays = state.classes.map(curr_class => rootGetters.getBABArray(rootState.reference.class_info[curr_class.class_name.toLowerCase()].bab, curr_class.level)).sort((a, b) => {return a.length - b.length});
-        let max_length = all_bab_arrays[all_bab_arrays.length - 1 ].length;
+        let all_bab_arrays = state.classes.map(curr_class => rootGetters.getBABArray(rootState.reference.class_info[curr_class.class_name.toLowerCase()].bab, curr_class.level)).sort((a, b) => {
+            return a.length - b.length
+        });
+        let max_length = all_bab_arrays[all_bab_arrays.length - 1].length;
         // Equalize the length of each BAB array
-        for (let array of all_bab_arrays){
-            while(array.length < max_length){
+        for (let array of all_bab_arrays) {
+            while (array.length < max_length) {
                 array.push(0);
             }
         }
         // Initialize array at necessary length, then fill it with zeroes
         let consolidated_bab_array = new Array(max_length);
         consolidated_bab_array.fill(0);
-        for (let i = 0; i < max_length; i++){
-            for (let j = 0; j < all_bab_arrays.length; j++){
+        for (let i = 0; i < max_length; i++) {
+            for (let j = 0; j < all_bab_arrays.length; j++) {
                 consolidated_bab_array[i] += all_bab_arrays[j][i];
             }
         }
@@ -231,9 +238,9 @@ const getters = {
         // Flatten out the array from 2- to 1-dimensional
         // Filter to make the array contain only unique values
         // Make lowercase
-        let test = state.classes.map(curr_class => curr_class.class_name).map(class_name => rootState.reference.class_info[class_name.toLowerCase()].class_skills).reduce((flatten, arr) => [...flatten, ...arr]).filter((value, index, self) => {return self.indexOf(value) === index}).map(mixed_case => mixed_case.toLowerCase());
-        console.log(test);
-        return test;
+        return state.classes.map(curr_class => curr_class.class_name).map(class_name => rootState.reference.class_info[class_name.toLowerCase()].class_skills).reduce((flatten, arr) => [...flatten, ...arr]).filter((value, index, self) => {
+            return self.indexOf(value) === index
+        }).map(mixed_case => mixed_case.toLowerCase());
     },
 };
 
@@ -253,8 +260,15 @@ const mutations = {
     updateInitiativeMiscModifier(state, value) {
         state.combat_stats.initiative_misc_modifier = parseInt(value);
     },
-    updateSkillMiscMod(state, payload){
-        state.skills.filter(element => {return element.skill_name === payload.skill_name})[0].misc_mod = payload.value;
+    updateSkillMiscMod(state, payload) {
+        state.skills.filter(element => {
+            return element.skill_name === payload.skill_name
+        })[0].misc_mod = parseInt(payload.value);
+    },
+    updateGroupSkillMiscMod(state, payload) {
+        state.skills.filter(element => {
+            return element.skill_name === payload.skill_name
+        }).filter(element => { return element.specialization === payload.specialization})[0].misc_mod = parseInt(payload.value);
     },
 };
 

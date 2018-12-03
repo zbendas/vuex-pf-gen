@@ -18,7 +18,7 @@ class MultiSkill extends Skill {
     }
 
     add_skill(subskill_name) {
-        this.group_skills.push(`${this.skill_name} (${subskill_name})`);
+        this.group_skills.push(subskill_name);
         return this;
     }
 

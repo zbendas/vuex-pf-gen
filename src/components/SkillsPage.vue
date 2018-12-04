@@ -35,7 +35,7 @@
 
     #page-content
         background: $light
-        height: 100%
+        min-height: 100%
         width: 100%
         padding-top: 5px
         display: flex

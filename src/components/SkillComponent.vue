@@ -118,10 +118,10 @@
 
     .specialization
         display: flex
-        background: darken($anti-flash_white, 10%)
+        background: linear-gradient(to right, $anti-flash_white 0%, $anti-flash_white 9%, darken($anti-flash_white, 10%) 9%, darken($anti-flash_white, 10%) 60%, $anti-flash_white 60%, $anti-flash_white 100%)
         .skill-name
             @extend %stat-label
-            margin-left: 10%
+            margin-left: 14.25%
             flex-basis: 15%
             height: 17px
             font-size: 0.75em

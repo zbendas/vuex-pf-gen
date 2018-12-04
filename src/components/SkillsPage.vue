@@ -1,7 +1,8 @@
 <template>
     <section id="page-content">
         <section class="column-labels">
-            <div class="column-label"></div>
+            <div class="column-label vertical-text">Class Skill</div>
+            <div class="column-label vertical-text">Trained Only</div>
             <div class="column-label">Skill Name</div>
             <div class="column-label">Total Bonus</div>
             <div class="column-label">Ability Modifier</div>
@@ -36,7 +37,7 @@
         background: $light
         height: 100%
         width: 100%
-        padding-top: 20px
+        padding-top: 5px
         display: flex
         flex-flow: column nowrap
         justify-content: flex-start
@@ -53,7 +54,12 @@
                 margin: 0 10px 0 20px
                 flex-basis: 2%
             &:nth-child(2)
+                flex-basis: 2%
+            &:nth-child(3)
                 flex-basis: 20%
                 margin-right: 0
+        .vertical-text
+            writing-mode: vertical-lr
+            text-orientation: mixed
 
 </style>

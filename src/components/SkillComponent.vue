@@ -1,7 +1,8 @@
 <template>
     <section class="skill">
         <section class="singleton-skill">
-            <input title="" :title="skill.skill_name" type="checkbox" :checked="is_class_skill" disabled/>
+            <input :title="skill.skill_name" type="checkbox" :checked="is_class_skill" disabled/>
+            <input :title="skill.skill_name" type="checkbox" :checked="skill.trained_only" disabled/>
             <div class="skill-name" :class="skill.modifier">{{ skill.skill_name }}</div>
             <div v-show="!is_group_skill" class="skill-total light-background" :class="skill.modifier">{{ skill_total }}
             </div>
@@ -9,10 +10,10 @@
                 getTemporaryAbilityModifier(skill.modifier) }}
             </div>
             <div v-show="!is_group_skill" class="skill-addend ranks">{{ ranks }}</div>
-            <input v-show="!is_group_skill" title="" :title="`${skill.skill_name} miscellaneous modifier`" type="number"
+            <input v-show="!is_group_skill" :title="`${skill.skill_name} miscellaneous modifier`" type="number"
                    class="skill-addend" :value="misc_mod"
                    @input="updateSkillMiscMod({value: $event.target.value, skill_name: skill.skill_name})"/>
-            <button v-show="is_group_skill" class="skill-expander" :disabled="!(is_group_skill && matched_skill.length > 0)" @click="is_expanded = !is_expanded">{{ is_expanded ?
+            <button v-show="is_group_skill" class="skill-expander" :disabled="!has_specialization" @click="is_expanded = !is_expanded">{{ is_expanded ?
                 "-" : "+"}}
             </button>
         </section>
@@ -22,7 +23,7 @@
                 <div class="skill-total light-background" :class="skill.modifier">{{ specialization_skill_total(group_skill.ranks, group_skill.misc_mod) }}</div>
                 <div class="skill-addend light-background" :class="skill.modifier">{{ getTemporaryAbilityModifier(skill.modifier) }}</div>
                 <div class="skill-addend ranks">{{ group_skill.ranks }}</div>
-                <input title="" :title="`${skill.skill_name} (${group_skill.specialization}) misc modifier`"
+                <input :title="`${skill.skill_name} (${group_skill.specialization}) misc modifier`"
                        type="number" class="skill-addend" :value="group_skill.misc_mod"
                        @input="updateGroupSkillMiscMod({value: $event.target.value, skill_name: skill.skill_name, specialization: group_skill.specialization})"
                 />
@@ -52,17 +53,20 @@
             is_group_skill: function () {
                 return this.skill.hasOwnProperty('group_skills');
             },
+            has_specialization: function () {
+                return this.is_group_skill && this.matched_skill.length > 0
+            },
             is_class_skill: function () {
                 return this.getClassSkills.includes(this.skill.skill_name.toLowerCase());
             },
             ranks: function () {
-                return parseInt(this.matched_skill != null ? this.matched_skill['ranks'] : 0);
+                return this.is_group_skill ? null : parseInt(this.matched_skill != null ? this.matched_skill['ranks'] : 0);
             },
             misc_mod: function () {
-                return parseInt(this.matched_skill != null ? this.matched_skill['misc_mod'] : 0);
+                return this.is_group_skill ? null : parseInt(this.matched_skill != null ? this.matched_skill['misc_mod'] : 0);
             },
             skill_total: function () {
-                return this.ranks + (this.is_class_skill && this.ranks > 0 ? 4 : 0) + this.getTemporaryAbilityModifier(this.skill.modifier) + this.misc_mod;
+                return this.is_group_skill ? null : this.ranks + (this.is_class_skill && this.ranks > 0 ? 4 : 0) + this.getTemporaryAbilityModifier(this.skill.modifier) + this.misc_mod;
             },
             ...mapState({
                 matched_skill: function (state) {
@@ -136,6 +140,12 @@
         @extend %underline_input
         line-height: 15px
         height: 17px
+
+    input.trained-only
+        @extend %underline_field
+        border: none
+        width: auto
+        text-transform: uppercase
 
     .skill-expander
         background: $anti-flash_white

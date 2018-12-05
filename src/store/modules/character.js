@@ -1,3 +1,5 @@
+import { Inventory } from '../../scripts/inventory';
+
 const state = {
     ability_scores: {
         strength: 10,
@@ -74,7 +76,27 @@ const state = {
         {skill_name: "Knowledge", specialization: "arcana", ranks: 1, misc_mod: 0},
         {skill_name: "Knowledge", specialization: "nobility", ranks: 1, misc_mod: 0},
     ],
-    inventory: {},
+    inventory: {
+        slots: new Inventory({slot: 'headband'}),
+        unequipped: [
+            {
+                name: "Torch",
+                quantity: 1
+            },
+            {
+                name: "Rope",
+                quantity: 1
+            },
+            {
+                name: "Chalk",
+                quantity: 1
+            },
+            {
+                name: "Parchment",
+                quantity: 1
+            },
+        ],
+    },
     character_name: "Lem",
     player_name: "You",
     alignment: "LG",
@@ -268,7 +290,9 @@ const mutations = {
     updateGroupSkillMiscMod(state, payload) {
         state.skills.filter(element => {
             return element.skill_name === payload.skill_name
-        }).filter(element => { return element.specialization === payload.specialization})[0].misc_mod = parseInt(payload.value);
+        }).filter(element => {
+            return element.specialization === payload.specialization
+        })[0].misc_mod = parseInt(payload.value);
     },
 };
 

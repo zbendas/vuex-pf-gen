@@ -13,6 +13,7 @@ export class Inventory {
         this.feet = null;
         this.shield = null;
         this.rings = [null, null];
+        this.other = [];
         for (let item in payload) {
             if (this.hasOwnProperty(item.slot)) this[item.slot] = item.item;
         }

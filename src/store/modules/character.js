@@ -1,4 +1,5 @@
-import { Inventory } from '../../scripts/inventory';
+import { Inventory } from "../../scripts/inventory";
+import { Item, SlottedItem, ArmorItem, MagicItem} from "../../scripts/item";
 
 const state = {
     ability_scores: {
@@ -77,24 +78,28 @@ const state = {
         {skill_name: "Knowledge", specialization: "nobility", ranks: 1, misc_mod: 0},
     ],
     inventory: {
-        slots: new Inventory({slot: 'headband'}),
+        equipped: new Inventory({
+            slot: 'headband',
+            item: new MagicItem("Hand of the Mage", 2, "neck", "faint", "transmutation", 2, 900, "This mummified elf hand hangs by a golden chain around a character's neck. It allows the wearer to utilize the spell \"Mage Hand\" at will.")
+        }),
         unequipped: [
             {
-                name: "Torch",
+                item_name: "Torch",
                 quantity: 1
             },
             {
-                name: "Rope",
+                item_name: "Rope",
                 quantity: 1
             },
             {
-                name: "Chalk",
+                item_name: "Chalk",
                 quantity: 1
             },
             {
-                name: "Parchment",
+                item_name: "Parchment",
                 quantity: 1
             },
+            new Item("Collapsible bathtub", 20)
         ],
     },
     character_name: "Lem",

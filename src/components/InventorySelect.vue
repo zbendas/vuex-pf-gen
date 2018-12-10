@@ -1,6 +1,6 @@
 <template>
     <select multiple :id="select_id" :size="8 || items.length">
-        <option v-for="(item, key) in items" :key="key" :value="item">{{ item.name }}</option>
+        <option v-for="(item, key) in items" :key="key" :value="item">{{ item.item_name }}</option>
     </select>
 </template>
 
@@ -9,7 +9,7 @@
         name: "InventorySelect",
         props: {
             select_id: String,
-            items: Array,
+            items: Object,
         }
     }
 </script>

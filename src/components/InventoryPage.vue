@@ -1,6 +1,7 @@
 <template>
     <section id="page-content">
         <InventorySelect :items="unequipped" select_id="unequipped-items"/>
+        <InventorySelect :items="equipped" select_id="equipped-items" />
     </section>
 </template>
 

@@ -78,10 +78,10 @@ const state = {
         {skill_name: "Knowledge", specialization: "nobility", ranks: 1, misc_mod: 0},
     ],
     inventory: {
-        equipped: new Inventory({
-            slot: 'headband',
+        equipped: new Inventory([{
+            slot: 'neck',
             item: new MagicItem("Hand of the Mage", 2, "neck", "faint", "transmutation", 2, 900, "This mummified elf hand hangs by a golden chain around a character's neck. It allows the wearer to utilize the spell \"Mage Hand\" at will.")
-        }),
+        }]),
         unequipped: [
             {
                 item_name: "Torch",

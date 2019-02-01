@@ -1,5 +1,5 @@
 export class Inventory {
-    constructor(...payload) {
+    constructor(payload) {
         this.head = null;
         this.headband = null;
         this.eyes = null;
@@ -13,8 +13,11 @@ export class Inventory {
         this.feet = null;
         this.shield = null;
         this.rings = [null, null];
+        // Non-Magic Slots
+        this.right_hand = null;
+        this.left_hand = null;
         this.other = [];
-        for (let item in payload) {
+        for (let item of payload) {
             if (this.hasOwnProperty(item.slot)) this[item.slot] = item.item;
         }
     }
